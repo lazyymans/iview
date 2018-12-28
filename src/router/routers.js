@@ -12,19 +12,25 @@ export default [
   {
     path: '/login',
     name: 'login',
-    meta: {
-      title: 'Login - 登录',
-      hideInMenu: true
-    },
+    title: '登陆',
+    hidden: true,
     component: () => import('@/view/login/login.vue')
   },
   {
     path: '/home',
     name: 'home',
-    meta: {
-      title: 'Home',
-      hideInMenu: true
-    },
-    component: () => import('@/view/home/home.vue')
+    title: '首页',
+    hidden: true,
+    component: () => import('@/view/home/home.vue'),
+  },
+  {
+    path: '/blog',
+    name: 'blog',
+    title: '博客管理',
+    iconCls: 'ios-analytics',
+    hidden: false,
+    leaf: true,
+    component: () => import('@/view/blog/blog.vue'),
+    children: []
   },
 ]

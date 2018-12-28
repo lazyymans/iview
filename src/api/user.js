@@ -11,4 +11,3 @@ export const login = ({ username, password }) => {
     method: 'post'
   })
 }
-

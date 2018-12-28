@@ -1,6 +1,6 @@
 import axios from 'axios'
-import Cookies from "js-cookie";
-import {TOKEN_KEY} from "./util";
+import Cookies from 'js-cookie'
+import {TOKEN_KEY} from './util'
 // import { Spin } from 'iview'
 class HttpRequest {
   constructor (baseUrl = baseURL) {
@@ -26,8 +26,9 @@ class HttpRequest {
     // 请求拦截
     instance.interceptors.request.use(config => {
       const token = Cookies.get(TOKEN_KEY)
-      if (token) {  // 判断是否存在token，如果存在的话，则每个http header都加上token
-        config.headers.token = `${token}`;
+      // 判断是否存在token，如果存在的话，则每个http header都加上token
+      if (token) {
+        config.headers.token = `${token}`
       }
       // 添加全局的loading...
       if (!Object.keys(this.queue).length) {

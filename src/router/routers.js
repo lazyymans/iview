@@ -7,30 +7,45 @@
  *  icon: (-) 该页面在左侧菜单、面包屑和标签导航处显示的图标，如果是自定义图标，需要在图标名称前加下划线'_'
  * }
  */
+const Login = () => import('@/view/login/login.vue')
+const Home = () => import('@/view/home/home.vue')
+const Blog = () => import('@/view/blog/blog.vue')
+
+const menus = [
+  {
+    path: '/blog',
+    name: 'blog',
+    meta: {
+      title: '博客管理',
+      hideInMenu: false,
+      notCache: true,
+      leaf: true,
+      icon: 'ios-analytics'
+    },
+    component: Blog,
+  }
+]
 
 export default [
   {
     path: '/login',
     name: 'login',
-    title: '登陆',
-    hidden: true,
-    component: () => import('@/view/login/login.vue')
+    meta: {
+      title: '登录',
+      hideInMenu: true
+    },
+    component: Login
   },
   {
     path: '/home',
     name: 'home',
-    title: '首页',
-    hidden: true,
-    component: () => import('@/view/home/home.vue'),
-  },
-  {
-    path: '/blog',
-    name: 'blog',
-    title: '博客管理',
-    iconCls: 'ios-analytics',
-    hidden: false,
-    leaf: true,
-    component: () => import('@/view/blog/blog.vue'),
-    children: []
+    meta: {
+      title: '首页',
+      hideInMenu: true
+    },
+    component: Home,
+    children: menus
   },
 ]
+
+

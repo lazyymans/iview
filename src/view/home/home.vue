@@ -1,5 +1,5 @@
 <style scoped>
-  @import './home.less';
+  @import './home.less'
 </style>
 <template>
   <div class="layout" :class="{'layout-hide-text': spanLeft < 5}">
@@ -11,17 +11,17 @@
           <span class="layout-text">博客管理后台</span>
         </div>
         <template v-for="(item) in $router.options.routes[1].children" v-if="!item.hideInMenu">
-          <Submenu :name="item.name" v-bind="" v-if="!item.meta.leaf">
+          <Submenu :name="item.name" v-if="!item.meta.leaf" v-bind:key="item">
             <template slot="title">
               <Icon :type="item.meta.icon"></Icon>
               <span class="layout-text">{{item.meta.title}}</span>
             </template>
             <template v-for="(child) in item.children">
-              <Menu-item :name="child.path" v-bind="">{{item.meta.title}}</Menu-item>
+              <Menu-item :name="child.path" v-bind:key="child">{{item.meta.title}}</Menu-item>
             </template>
           </Submenu>
           <template v-if="item.meta.leaf">
-            <Menu-item :name="item.path" v-bind="">
+            <Menu-item :name="item.path" v-bind:key="item">
               <Icon :type="item.meta.icon"></Icon>
               <span class="layout-text">{{item.meta.title}}</span>
             </Menu-item>

@@ -23,7 +23,7 @@ export const QRCodeLogin = (uuid) => {
   })
 }
 
-export const RobotLogin = ({code, hostUrl, redirectUrl}) => {
+export const RobotLogin = ({code, hostUrl, redirectUrl, uuid}) => {
   const data = {
     code,
     hostUrl,
@@ -31,6 +31,9 @@ export const RobotLogin = ({code, hostUrl, redirectUrl}) => {
   }
   return axios.request({
     url: '/robot/wechat/login/wechatRobotLogin',
+    headers: {
+      'uuid': uuid
+    },
     data,
     method: 'put'
   })

@@ -13,8 +13,8 @@ export default {
    * @description api请求基础路径
    */
   baseUrl: {
-    // dev: 'http://localhost:9900/',
-    dev: 'http://mp.test.pcluo.com',
+    dev: 'http://localhost:9900/',
+    // dev: 'http://mp.test.pcluo.com',
     pro: 'https://produce.com'
   }
 }

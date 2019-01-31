@@ -43,7 +43,7 @@ class HttpRequest {
     // 响应拦截
     instance.interceptors.response.use(res => {
       this.distroy(url)
-		sessionStorage.setItem('uuid',res.headers.uuid)	
+      sessionStorage.setItem('uuid', res.headers.uuid)
       const { data, status } = res
       return { data, status }
     }, error => {

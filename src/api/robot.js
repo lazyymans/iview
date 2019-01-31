@@ -8,7 +8,7 @@ export const QRcode = ({}) => {
     url: '/robot/wechat/login/createLoginQRCode',
     data,
     method: 'get',
-	responseType: 'blob',
+    responseType: 'blob'
   })
 }
 
@@ -16,22 +16,22 @@ export const QRCodeLogin = (uuid) => {
   const data = uuid
   return axios.request({
     url: '/robot/wechat/login/checkScanQRCodeLogin',
-	headers:{
-        'uuid':data
+    headers: {
+      'uuid': data
     },
-    method: 'get',
+    method: 'get'
   })
 }
 
 export const RobotLogin = ({code, hostUrl, redirectUrl}) => {
   const data = {
     code,
-	hostUrl,
-	redirectUrl
+    hostUrl,
+    redirectUrl
   }
   return axios.request({
     url: '/robot/wechat/login/wechatRobotLogin',
     data,
-    method: 'put',
+    method: 'put'
   })
 }

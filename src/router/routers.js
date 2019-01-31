@@ -10,6 +10,7 @@
 const Login = () => import('@/view/login/login.vue')
 const Home = () => import('@/view/home/home.vue')
 const Blog = () => import('@/view/blog/blog.vue')
+const robot = () => import('@/view/robot/robot.vue')
 
 const menus = [
   {
@@ -23,7 +24,19 @@ const menus = [
       icon: 'ios-analytics'
     },
     component: Blog,
-  }
+  },
+  {
+    path: '/robot',
+    name: 'robot',
+    meta: {
+      title: '微信机器人',
+      hideInMenu: false,
+      notCache: true,
+      leaf: true,
+      icon: 'ios-analytics'
+    },
+    component: robot,
+  }	
 ]
 
 export default [

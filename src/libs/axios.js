@@ -1,6 +1,7 @@
 import axios from 'axios'
 import Cookies from 'js-cookie'
 import {TOKEN_KEY} from './util'
+import { mapMutations } from 'vuex'
 // import { Spin } from 'iview'
 class HttpRequest {
   constructor (baseUrl = baseURL) {
@@ -42,6 +43,7 @@ class HttpRequest {
     // 响应拦截
     instance.interceptors.response.use(res => {
       this.distroy(url)
+		sessionStorage.setItem('uuid',res.headers.uuid)	
       const { data, status } = res
       return { data, status }
     }, error => {

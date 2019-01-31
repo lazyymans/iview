@@ -19,10 +19,13 @@ import { mapActions } from 'vuex'
 export default {
   data () {
     return {
+
       modal1: false,
+
       blogAddFormModal: false,
       blogAddForm: {},
       columns: [
+
         { title: '标题', key: 'title', align: 'center', width: 200 },
         { title: '发布者', key: 'name', align: 'center', width: 200 },
         { title: '发布状态', key: 'articleStatus', align: 'center', width: 200 },
@@ -33,6 +36,7 @@ export default {
   },
   methods: {
     ...mapActions([
+
       'addBlog'
     ]),
     showBlogAddFormModal () {

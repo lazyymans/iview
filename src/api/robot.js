@@ -5,7 +5,7 @@ import axios from '@/libs/api.request'
  * @returns {*|void|AxiosPromise<any>}
  * @constructor
  */
-export const QRcode = () => {
+export const createLoginQRCode = () => {
   return axios.request({
     url: '/robot/wechat/login/createLoginQRCode',
     method: 'get',
@@ -19,7 +19,7 @@ export const QRcode = () => {
  * @returns {*|void|AxiosPromise<any>}
  * @constructor
  */
-export const QRCodeLogin = (uuid) => {
+export const checkScanQRCodeLogin = (uuid) => {
   const data = uuid
   return axios.request({
     url: '/robot/wechat/login/checkScanQRCodeLogin',
@@ -39,7 +39,7 @@ export const QRCodeLogin = (uuid) => {
  * @returns {*|void|AxiosPromise<any>}
  * @constructor
  */
-export const RobotLogin = ({code, hostUrl, redirectUrl, uuid}) => {
+export const wechatRobotLogin = ({code, hostUrl, redirectUrl, uuid}) => {
   const data = {
     code,
     hostUrl,

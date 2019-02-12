@@ -20,7 +20,7 @@
 	</div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import { createLoginQRCode, checkScanQRCodeLogin, wechatRobotLogin, listWechatRobotUser } from '@/api/robot'
 import Render from '@/common/render';
 export default {
   data () {
@@ -39,25 +39,23 @@ export default {
     }
   },
   methods: {
-    ...mapActions([
-      'createQRCode',
-      'robotUserList',
-    ]),
-    QRCode () {
-      this.createQRCode()
-      this.Imgurl = window.URL.createObjectURL(this.$store.state.robot.QRCodeImgRes.data)
-      this.uuid = sessionStorage.getItem('uuid');
+    createQRCode () {
+      createLoginQRCode().then(res => {
+        this.Imgurl = window.URL.createObjectURL(res.data)
+        this.uuid = sessionStorage.getItem('uuid');
+      })
     },
     confirmWechatRobotLogin () {
-      /*QRCodeLogin(this.uuid).then(res => {
+      let uuid = this.uuid
+      checkScanQRCodeLogin(uuid).then(res => {
         let resData = res.data.data;
         let code = resData.code
         if (code == 408) {
           this.$Message.info('408 等待扫描二维码');
-          this.QRCodeLogin()
+          this.confirmWechatRobotLogin()
         } else if (code == 200) {
           this.$Message.info('登陆成功');
-          this.RobotLogin(resData.code, resData.hostUrl, resData.redirectUrl, this.uuid)
+          this.robotLogin(resData.code, resData.hostUrl, resData.redirectUrl, this.uuid)
           this.modalDialog = false
         } else if (code == 400)  {
           this.$Message.info('二维码超时 400');
@@ -66,30 +64,32 @@ export default {
         } else if (code == 201)  {
           this.$Message.info('在手机上点击确认');
         }
-      })*/
+      })
     },
-    RobotLogin (code, hostUrl, redirectUrl, uuid) {
-      /*RobotLogin({code, hostUrl, redirectUrl, uuid}).then(res => {
-        let resData = res.data.data;
+    robotLogin (code, hostUrl, redirectUrl, uuid) {
+      wechatRobotLogin({code, hostUrl, redirectUrl, uuid}).then(res => {
+        let resData = res.data;
         if (resData.resultCode == 200) {
           //TODO  这里去刷新机器人
-          console.log("微信机器人登陆成功")
+          this.robotUserList()
+          this.$Message.info('微信机器人登陆成功');
         } else {
-          console.log("微信机器人登陆失败")
+          this.$Message.info('微信机器人登陆失败');
         }
-      })*/
+      })
     },
-    listWechatRobotUser (){
-      this.robotUserList()
-      this.dataTable = this.$store.state.robot.robotList
+    robotUserList (){
+      listWechatRobotUser({}).then(res => {
+        this.dataTable = res.data.data
+      })
     },
     modalQR () {
       this.modalDialog = true
-      this.QRCode()
+      this.createQRCode()
     }
   },
   mounted () {
-    this.listWechatRobotUser()
+    this.robotUserList()
   }
 }
 </script>

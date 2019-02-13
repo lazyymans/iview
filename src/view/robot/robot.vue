@@ -33,7 +33,7 @@ export default {
         { title: '用户昵称', key: 'nickname', align: 'center' },
         { title: '用户性别', key: 'sex', align: 'center' },
         { title: '个性签名', key: 'signature', align: 'center' },
-        { title: '平台创建时间', key: 'createTime', align: 'center' },
+        { title: '平台创建时间', key: 'updateTime', align: 'center' }
       ],
       dataTable: []
     }
